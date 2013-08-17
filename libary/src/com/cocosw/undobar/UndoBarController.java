@@ -22,15 +22,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnticipateOvershootInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -104,20 +100,17 @@ public class UndoBarController extends LinearLayout {
 			setVisibility(View.GONE);
 		} else {
 			clearAnimation();
-			startAnimation(UndoBarController.outToBottomAnimation(null));
+			startAnimation(UndoBarController.fadeOutAnimation(null));
 			setVisibility(View.GONE);
 		}
 	}
 
-	private static Animation outToBottomAnimation(
+	private static Animation fadeOutAnimation(
 			final android.view.animation.Animation.AnimationListener animationlistener) {
-		final TranslateAnimation translateanimation = new TranslateAnimation(2,
-				0F, 2, 0F, 2, 0F, 2, 1F);
-		translateanimation.setDuration(500L);
-		translateanimation.setInterpolator(new AnticipateOvershootInterpolator(
-				1.0f));
-		translateanimation.setAnimationListener(animationlistener);
-		return translateanimation;
+		final AlphaAnimation animation = new AlphaAnimation(1.0f, 0.0f);
+		animation.setDuration(150L);
+		animation.setAnimationListener(animationlistener);
+		return animation;
 	}
 
 	@Override
@@ -169,19 +162,17 @@ public class UndoBarController extends LinearLayout {
 		}
 		if (!immediate) {
 			clearAnimation();
-			startAnimation(UndoBarController.inFromBottomAnimation(null));
+			startAnimation(UndoBarController.fadeInAnimation(null));
 		}
 		setVisibility(View.VISIBLE);
 	}
 
-	private static Animation inFromBottomAnimation(
+	private static Animation fadeInAnimation(
 			final android.view.animation.Animation.AnimationListener animationlistener) {
-		final TranslateAnimation translateanimation = new TranslateAnimation(2,
-				0F, 2, 0F, 2, 1F, 2, 0F);
-		translateanimation.setDuration(500L);
-		translateanimation.setInterpolator(new OvershootInterpolator(1.0f));
-		translateanimation.setAnimationListener(animationlistener);
-		return translateanimation;
+		final AlphaAnimation animation = new AlphaAnimation(0.0f, 1.0f);
+		animation.setDuration(150L);
+		animation.setAnimationListener(animationlistener);
+		return animation;
 	}
 
 	/**
