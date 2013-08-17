@@ -14,7 +14,8 @@
   limitations under the License.
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="UndoBar">
+    
+    <style name="UndoBar.Base">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">48dp</item>
@@ -27,27 +28,36 @@
         <item name="android:background">@drawable/undobar</item>
         <item name="android:clickable">true</item>
     </style>
-    <style name="UndoBarMessage">
+    
+    <style name="UndoBarMessage.Base">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginRight">16dp</item>
-        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
         <item name="android:textColor">#fff</item>
     </style>
-    <style name="UndoBarButton">
+    
+    <style name="UndoBarButton.Base">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingLeft">12dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:background">@drawable/undobar_button</item>
         <item name="android:drawableLeft">@drawable/ic_undobar_undo</item>
-        <item name="android:drawablePadding">12dp</item>
-        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:textAppearance">?android:textAppearanceSmall</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">#fff</item>
+        <item name="android:textColor">#ccc</item>
         <item name="android:text">"Undo"</item>
     </style>
+    
+    <style name="UndoBar" parent="UndoBar.Base" />
+    
+    <style name="UndoBarMessage" parent="UndoBarMessage.Base" />
+    
+    <style name="UndoBarButton" parent="UndoBarButton.Base" />
+    
 </resources>
